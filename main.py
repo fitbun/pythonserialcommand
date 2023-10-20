@@ -139,10 +139,12 @@ class Mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if self.checkBox_2.isChecked():
                     window.Set_Display_Data(bytes(Data_Need_Send, encoding="utf-8"))
             else:
-                QMessageBox.critical(self, '串口错误', '请先打开串口！')
+                QMessageBox.critical(self, '串口错误', '打开串口！')
+                self.SendData_Timer.setChecked(False)
                 print("请先打开串口")
         except:
             QMessageBox.critical(self, '串口错误', '请先打开串口！')
+            self.SendData_Timer.setChecked(False)
             print("请先打开串口")
 
     def Send_Data_timer(self):
@@ -164,7 +166,6 @@ class Mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 print('定时发送数据周期仅可设置在30秒内！')
         except:
             print('请设置正确的数值类型！')
-
 
 
 if __name__ == '__main__':
